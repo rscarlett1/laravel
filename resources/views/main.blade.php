@@ -1,24 +1,25 @@
 <!DOCTYPE html>
-  <html lang="en">
-  
-  <head>  
-  @include('partials._head')
+<html lang="en">
+  <head>
+    @include('partials._head')
   </head>
-
+  
   <body>
 
-    @include('partials.nav')
+    @include('partials.nav')    
 
-    <div class="container"> 
+    <div class="container">
+      @include('partials.messages')
 
-    @yield('content')
+      @yield('content')
 
-    @include('partials.footer')
+      @include('partials.footer')
 
-    <div> <!-- end of .container -->
+    </div> <!-- end of .container --> 
 
-      @include('partials.javascript')
+        @include('partials.javascript')
 
-      @yield('scripts')
+        @yield('scripts')
+
   </body>
 </html>

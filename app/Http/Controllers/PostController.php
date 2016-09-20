@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use App\Post;
 
+use Session;
+
 class PostController extends Controller
 {
     /**
@@ -27,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('posts/create');
+        return view('posts.create');
     }
 
     /**
@@ -36,15 +38,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-
-    {
+    public function store(Request $request){
         //validate the data
         $this->validate($request, array(
             'title' =>'required|max:255',
             'body' => 'required'
             ));
 
+   
         // Store in the database
         $post = new Post;
 
@@ -52,6 +53,8 @@ class PostController extends Controller
         $post->body = $request->body;
 
         $post->save();
+
+        Session::flash('success', 'The blog post was successfully saved!');
 
         //redirect to another page
        return redirect()->route('posts.show', $post->id);  
@@ -65,7 +68,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('posts.show');
     }
 
     /**
